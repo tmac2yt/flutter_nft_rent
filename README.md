@@ -1,9 +1,14 @@
 # 基于以太坊的ERC-721资产的租赁平台
 
-![](https://github.com/15088518315/flutter_nft_rent/blob/master/about%20us.jpg)
-
 ## 💡 项目背景
 Oort Digital正在开发一个NFT租赁的去中心化协议，实现NFT全球化租赁，增加NFT流动性，促进构建一个完善的NFT估值体系
+
+
+
+## 🏠 关于Oort Digital
+https://5f0246cc0f70ad0008eb2754--romantic-goldstine-1d74b6.netlify.app
+
+
 
 ## 🏹 功能描述
 举一个例子：
@@ -19,33 +24,51 @@ Alice 设置好挂单操作后，点击 “Deposit” 便可以把该NFT从地�
 Bob 看到了Alice 的挂单，决定点击接单。在Bob点击接单时，押金 0.5 ETH 自动从地址B 到 C。合约地址C进入状态2。在状态2，Alice无法用地址A去使用该NFT，而Bob可以用地址B去使用该NFT。在状态2，合约地址C会在每个月月底自动往地址A发送 1 ETH。Bob 可以随时往合约地址C打任何数量的ETH，也随时可以取出任何数量ETH,只需要保证在每个月月底C需要发送给A时，有至少1 ETH，否则属于违约。一旦发生违约，合约进入状态3,  0.5个ETH以及该NFT会重新从C转到A，合约回归到状态0.
 
 
+
+
 ## 🧩 技术架构
-###区块链
+### 1.区块链
 在以太坊测试链上（Ropsten）部署了两个智能合约：
-1.自定义的ERC721合约：StandardAssetRegistryTest.sol
+- 1.自定义的ERC721合约：StandardAssetRegistryTest.sol
 合约地址：0x898f6921bbf897be9572df299c5fe77b0418e252
 
-2.NFT租赁合约：NFTRNET.sol
+- 2.NFT租赁合约：NFTRNET.sol
 合约地址：0xe60ec887223098a5514d6ae1d7eb7633338c23e9
 
-###服务器端
-框架：springBoot+web3.java
-项目链接：
+- 项目链接：https://github.com/oort-digital/nft_rent
 
-###前端
-框架
-1.css:bootStrap
-2.js:jquery+web3.js+walletConnect
-链接：
+  
 
-###app
-框架：flutter+web3dart
-Features
-1.支持扫描登录以太坊账户
-2.访问ERC721和租赁合约方法
-3.调用ERC721和租赁合约发送交易
-4.监听ERC721和租赁合约状态，实时更新数据
-5.分为四大业务模块：
+### 2.服务器端
+- 框架：springBoot + web3.java
+
+- 项目链接：https://github.com/oort-digital/nft-rent-contracts
+
+  
+
+### 3.前端
+- 框架：bootStrap + jquery + web3.js + walletConnect
+
+- 项目链接：https://github.com/oort-digital/landing
+
+  
+
+### 4.app
+#### 框架：flutter + web3dart
+#### Features
+- 1.支持扫描登录以太坊账户
+
+- 2.访问ERC721和租赁合约方法
+
+- 3.调用ERC721和租赁合约发送交易
+
+- 4.监听ERC721和租赁合约状态，实时更新数据
+
+- 5.分为四大业务模块：
     NFT资产，出租NFT,租赁NFT,已达成的NFT租赁
+    
+    
 
-####截图
+#### 5.截图
+![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/about_us.jpg)
+![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/active_contract.jpg)
