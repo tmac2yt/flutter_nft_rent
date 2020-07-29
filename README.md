@@ -69,6 +69,15 @@ Bob 看到了Alice 的挂单，决定点击接单。在Bob点击接单时，押�
     
     
 
-#### 截图
-![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/about_us.jpg)
+#### app截图
+![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/app.jpg)
+![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/login.jpg)
+![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/logined.jpg)
+![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/nft.jpg)
+![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/lessor_list.jpg)
+![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/lessor_order.jpg)
 ![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/active_contract.jpg)
+![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/active_contract_detail.jpg)
+![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/about_us.jpg)
+![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/crypto_kitty.jpg)
+![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/land.jpg)
