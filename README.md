@@ -26,36 +26,34 @@ Bob 看到了Alice 的挂单，决定点击接单。在Bob点击接单时，押�
 
 
 
-## 🧩 技术实现
+## 🧩 技术介绍
+
 ### 1.区块链
 在以太坊测试链上（Ropsten）部署了两个智能合约：
 - 1.自定义的ERC721合约：StandardAssetRegistryTest.sol
-合约地址：0x898f6921bbf897be9572df299c5fe77b0418e252
+- 合约地址：0x898f6921bbf897be9572df299c5fe77b0418e252
 
 - 2.NFT租赁合约：NFTRNET.sol
-合约地址：0xe60ec887223098a5514d6ae1d7eb7633338c23e9
+- 合约地址：0xe60ec887223098a5514d6ae1d7eb7633338c23e9
 
 - 项目链接：https://github.com/oort-digital/nft_rent
 
-  
 
 ### 2.服务器端
 - 框架：springBoot + web3.java
 
 - 项目链接：https://github.com/oort-digital/nft-rent-contracts
 
-  
 
 ### 3.前端
 - 框架：bootStrap + jquery + web3.js + walletConnect
 
 - 项目链接：https://github.com/oort-digital/landing
 
-  
 
 ### 4.app
 #### 框架：flutter + web3dart
-#### Features
+#### 功能点
 - 1.支持扫描登录以太坊账户
 
 - 2.访问ERC721和租赁合约方法
