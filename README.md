@@ -26,7 +26,7 @@ Bob 看到了Alice 的挂单，决定点击接单。在Bob点击接单时，押�
 
 
 
-## 🧩 技术架构
+## 🧩 关于技术
 ### 1.区块链
 在以太坊测试链上（Ropsten）部署了两个智能合约：
 - 1.自定义的ERC721合约：StandardAssetRegistryTest.sol
@@ -69,7 +69,7 @@ Bob 看到了Alice 的挂单，决定点击接单。在Bob点击接单时，押�
     
     
 
-#### app截图
+#### app部分截图
 ![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/app.jpg)
 ![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/login.jpg)
 ![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/logined.jpg)
