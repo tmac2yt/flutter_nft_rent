@@ -69,6 +69,6 @@ Bob 看到了Alice 的挂单，决定点击接单。在Bob点击接单时，押�
     
     
 
-#### 5.截图
+#### 截图
 ![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/about_us.jpg)
 ![](https://github.com/15088518315/flutter_nft_rent/blob/master/screenshorts/active_contract.jpg)
