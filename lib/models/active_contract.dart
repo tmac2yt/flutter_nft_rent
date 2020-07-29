@@ -18,9 +18,9 @@ class ActiveContract {
   var rent;
 
 
-  int leasingTime;
+  var leasingTime;
 
-  int payCount;
+  var payCount;
 
   var balance;
 

@@ -20,13 +20,13 @@ class NavigationIconView {
       : this.item = BottomNavigationBarItem(
             icon: Image.asset(
               iconPath,
-              width: 30.0,
-              height: 30.0,
+              width: 20.0,
+              height: 20.0,
             ),
             activeIcon: Image.asset(
               activeIconPath,
-              width: 30.0,
-              height: 30.0,
+              width: 20.0,
+              height: 20.0,
             ),
             title: Text(title));
 }

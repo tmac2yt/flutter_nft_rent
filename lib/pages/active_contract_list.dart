@@ -1,12 +1,11 @@
+import 'dart:math';
+
+import 'package:client/constants/constants.dart';
 import 'package:client/constants/event_bus.dart';
 import 'package:client/models/active_contract.dart';
-import 'package:client/models/rent_list.dart';
 import 'package:client/pages/active_contract_detail.dart';
-import 'package:client/pages/lessor_order.dart';
 import 'package:client/utils/common_ui_utils.dart';
-import 'package:client/utils/common_utils.dart';
 import 'package:client/utils/contract_utils.dart';
-import 'package:client/utils/data_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -41,8 +40,8 @@ class _ActiveContractListState extends State<ActiveContractList> {
             String lessor = list[1].toString();
             String tenant = list[2].toString();
             String leasingSchedule = list[3].toString();
-            int startTime = list[4];
-            int lastTime = list[5];
+            int startTime = int.parse(list[4].toString());
+            int lastTime = int.parse(list[5].toString());
             double securityDeposit =
                 EtherAmount.fromUnitAndValue(EtherUnit.kwei, list[6])
                         .getInEther
@@ -52,8 +51,8 @@ class _ActiveContractListState extends State<ActiveContractList> {
                     .getInEther
                     .toDouble() /
                 1000;
-            int leasingTime = list[8];
-            int payCount = list[9];
+            var leasingTime = list[8];
+            var payCount = list[9];
             double balance =
                 EtherAmount.fromUnitAndValue(EtherUnit.kwei, list[10])
                         .getInEther
@@ -120,37 +119,72 @@ class _ActiveContractListState extends State<ActiveContractList> {
         itemCount: activeContractList.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          mainAxisSpacing: 10,
+          //上下间隔
+          mainAxisSpacing: 5,
+          //宽高比
+          childAspectRatio: 4.5 / 5,
         ),
         itemBuilder: (context, index) {
           ActiveContract activeContract = activeContractList[index];
+          String imagePath = CommonUIUtils.imagePath[index];
           return GestureDetector(
             child: Container(
-              margin: EdgeInsets.all(10.0),
-              child: Row(
+              margin: EdgeInsets.all(4.0),
+              padding: EdgeInsets.all(4.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10.0),
+                ),
+                border: Border.all(width: 1),
+              ),
+              child: Column(
                 children: <Widget>[
-                  CommonUIUtils.buildImage(index),
-                  ListTile(
-                    leading: Icon(Icons.favorite),
-                    title: Text(
-                      'tokenId:',
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.w300),
-                    ),
-                    subtitle: Text(
-                      activeContract.tokenId,
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.w300),
-                    ),
-                  )
+                  Image.asset(
+                    imagePath,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                  ),
+                  buildExpanded(index, activeContract)
                 ],
               ),
             ),
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ActiveContractDetail(activeContract)));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ActiveContractDetail(activeContract)));
             },
           );
         });
+  }
+
+  Column buildExpanded(index, activeContract) {
+    IconData icon = index.isOdd ? Icons.home : Icons.favorite;
+    //模拟数据
+    String tokenId = Random().nextInt(1000).toString();
+    String rent =
+        (Random().nextInt(2) + Random().nextDouble()).toStringAsFixed(2);
+    return Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(icon),
+            Container(
+              margin: EdgeInsets.only(left: 10.0),
+              child: CommonUIUtils.richTextWidget('tokenId', tokenId),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(Icons.attach_money),
+            Container(
+              margin: EdgeInsets.only(left: 10.0),
+              child: CommonUIUtils.richTextWidget('rent', '${rent}ETH'),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }

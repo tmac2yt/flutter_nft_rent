@@ -4,14 +4,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 class CommonUIUtils {
+  static final imagePath = [
+    'assets/images/decentraland.png',
+    'assets/images/crypto_kitty.png',
+    'assets/images/decentraland2.png',
+    'assets/images/crypto_kitty2.png',
+    'assets/images/spacecraft.png'
+  ];
+
   static Widget buildImage(int index) {
-    if (index.isOdd) {
-      return Image.asset('assets/images/decentraland.png',
-          width: 109.0, height: 67.0);
-    } else {
-      return Image.asset('assets/images/crypto_kitty.png',
-          width: 109.0, height: 73.0);
-    }
+    index = index % imagePath.length;
+    return Image.asset(imagePath[index], fit: BoxFit.cover, width: 120.0);
   }
 
   static Text buildText(String value) {
@@ -51,6 +54,23 @@ class CommonUIUtils {
         'data is empty',
         style: TextStyle(color: Colors.blue, fontSize: 25.0),
       ),
+    );
+  }
+
+  static Widget richTextWidget(String title, String content) {
+    return RichText(
+      text: TextSpan(
+          text: '$title：',
+          style: TextStyle(
+              fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.w300),
+          children: <TextSpan>[
+            TextSpan(
+                text: '$content',
+                style: TextStyle(fontSize: 16.0, color: Colors.blueGrey)),
+          ]),
+      textAlign: TextAlign.center,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

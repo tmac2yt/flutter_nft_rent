@@ -1,3 +1,4 @@
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:client/constants/event_bus.dart';
 import 'package:client/pages/common_web_page.dart';
 import 'package:client/utils/common_utils.dart';
@@ -33,29 +34,29 @@ class MyDrawer extends StatelessWidget {
                 padding: EdgeInsets.all(0.0),
                   onPressed: () async {
                     //扫描获取私钥
-//                    BarcodeScanner.scan().then((scanResult){
-//                      if (scanResult != null) {
-//                        String privateKey = scanResult.rawContent;
-//                        if (privateKey != null &&
-//                            privateKey.isNotEmpty &&
-//                            privateKey.length == 32) {
-//                          ContractUtils.privateKey = privateKey;
-//                          ContractUtils.initContracts(context).then((_){
-//                            eventBus.fire(LoginEvent);
-//                            Map<String, dynamic> map = Map();
-//                            map[DataUtils.SP_PRIVATE_KEY] = privateKey;
-//                            DataUtils.saveLoginInfo(map);
-//                          });
-//                        }
-//                      }
-//                    });
-                    ContractUtils.privateKey = 'b7f17be35ed23a376efc826d3c4db1ca5de03ce2eefad03f6949bd922326ee8a';
-                    ContractUtils.initContracts(context).then((_){
-                      eventBus.fire(LoginEvent());
-                      Map<String, dynamic> map = Map();
-                      map[DataUtils.SP_PRIVATE_KEY] = ContractUtils.privateKey;
-                      DataUtils.saveLoginInfo(map);
+                    BarcodeScanner.scan().then((scanResult){
+                      if (scanResult != null) {
+                        String privateKey = scanResult.rawContent;
+                        if (privateKey != null &&
+                            privateKey.isNotEmpty &&
+                            privateKey.length == 32) {
+                          ContractUtils.privateKey = privateKey;
+                          ContractUtils.initContracts(context).then((_){
+                            eventBus.fire(LoginEvent);
+                            Map<String, dynamic> map = Map();
+                            map[DataUtils.SP_PRIVATE_KEY] = privateKey;
+                            DataUtils.saveLoginInfo(map);
+                          });
+                        }
+                      }
                     });
+//                    ContractUtils.privateKey = 'b7f17be35ed23a376efc826d3c4db1ca5de03ce2eefad03f6949bd922326ee8a';
+//                    ContractUtils.initContracts(context).then((_){
+//                      eventBus.fire(LoginEvent());
+//                      Map<String, dynamic> map = Map();
+//                      map[DataUtils.SP_PRIVATE_KEY] = ContractUtils.privateKey;
+//                      DataUtils.saveLoginInfo(map);
+//                    });
                   },
                   child: Container(
                     alignment: Alignment.center,

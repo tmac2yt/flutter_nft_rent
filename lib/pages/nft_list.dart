@@ -72,7 +72,6 @@ class _NFTListState extends State<NFTList> {
 
   Widget buildListView() {
     if (nftList == null) {
-      print('getNFT');
       getNFT();
       return Center(
         child: CupertinoActivityIndicator(
@@ -87,18 +86,24 @@ class _NFTListState extends State<NFTList> {
     return ListView.separated(
         itemBuilder: (context, index) {
           String titleStr = 'tokenID = ' + nftList[index].toString();
-          return Row(
-            children: <Widget>[
-              CommonUIUtils.buildImage(index),
-              Container(
-                child: CommonUIUtils.buildText(titleStr),
-                margin: EdgeInsets.only(left: 10.0),
-              ),
-            ],
+          return Container(
+            child: Row(
+              children: <Widget>[
+                CommonUIUtils.buildImage(index),
+                Container(
+                  child: CommonUIUtils.richTextWidget(
+                      'tokenId', nftList[index].toString()),
+                  margin: EdgeInsets.only(left: 10.0),
+                ),
+              ],
+            ),
+            margin: EdgeInsets.only(left: 10.0, top: 5.0),
           );
         },
         separatorBuilder: (context, index) {
-          return Divider();
+          return Divider(
+            color: Colors.blueGrey,
+          );
         },
         itemCount: nftList.length);
   }

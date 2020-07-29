@@ -8,6 +8,7 @@ import 'package:client/utils/contract_utils.dart';
 import 'package:client/utils/data_utils.dart';
 import 'package:client/widgets/my_drawer.dart';
 import 'package:client/widgets/navigation_icon_view.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _appTitle = ['nft', 'lessor', 'lessee', 'active contract'];
+  final _appTitle = ['nft', 'lessor', 'lessee', 'contract'];
   final _menuIcons = [Icons.favorite, Icons.home, Icons.group, Icons.settings];
   final _menuTitles = ['Crypto Kitty', 'Decentraland', 'about us', 'settings'];
   List<NavigationIconView> _navigationIconViews;
@@ -58,6 +59,7 @@ class _HomePageState extends State<HomePage> {
         ContractUtils.initContracts(context).then((_) {
           if (mounted) {
             setState(() {});
+            eventBus.fire(LoginEvent());
           }
         });
       }

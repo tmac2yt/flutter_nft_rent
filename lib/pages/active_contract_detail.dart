@@ -41,6 +41,7 @@ class _ActiveContractDetailState extends State<ActiveContractDetail> {
     // TODO: implement initState
     super.initState();
     if (activeContract != null) {
+      list = new List();
       MyKeyValue myKeyValue =
           new MyKeyValue(key: 'tokenId', value: activeContract.tokenId);
       list.add(myKeyValue);
@@ -54,17 +55,18 @@ class _ActiveContractDetailState extends State<ActiveContractDetail> {
       MyKeyValue myKeyValue3 =
           new MyKeyValue(key: 'startTime', value: startTime);
       list.add(myKeyValue3);
-      String lastTime = DateUtils.convertIntToString(activeContract.lastTime);
-      MyKeyValue myKeyValue4 = new MyKeyValue(key: 'endTime', value: lastTime);
+      String lastTime = activeContract.lastTime == 0?'Not paid':DateUtils.convertIntToString(activeContract.lastTime);
+      MyKeyValue myKeyValue4 = new MyKeyValue(key: 'lastTime', value: lastTime);
       list.add(myKeyValue4);
       MyKeyValue myKeyValue5 = new MyKeyValue(
-          key: 'securityDeposit', value: activeContract.securityDeposit);
+          key: 'securityDeposit',
+          value: '${activeContract.securityDeposit}ETH');
       list.add(myKeyValue5);
       MyKeyValue myKeyValue6 =
-          new MyKeyValue(key: 'rent', value: activeContract.rent);
+          new MyKeyValue(key: 'rent', value: '${activeContract.rent}ETH');
       list.add(myKeyValue6);
       MyKeyValue myKeyValue7 =
-          new MyKeyValue(key: 'balance', value: activeContract.balance);
+          new MyKeyValue(key: 'balance', value: '${activeContract.balance}ETH');
       list.add(myKeyValue7);
     }
   }
@@ -82,8 +84,7 @@ class _ActiveContractDetailState extends State<ActiveContractDetail> {
 
   Center buildCenter() {
     return Center(
-        child: Column(children: <Widget>[
-      ListView.separated(
+      child: ListView.separated(
           itemBuilder: (context, index) {
             MyKeyValue keyValue = list[index];
             return ListTile(
@@ -102,6 +103,6 @@ class _ActiveContractDetailState extends State<ActiveContractDetail> {
             return Divider();
           },
           itemCount: list.length),
-    ]));
+    );
   }
 }

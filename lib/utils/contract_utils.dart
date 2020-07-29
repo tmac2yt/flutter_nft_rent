@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:client/constants/event_bus.dart';
-import 'package:client/utils/common_utils.dart';
 import 'package:client/utils/data_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -10,12 +9,13 @@ import 'package:web_socket_channel/io.dart';
 
 class ContractUtils {
   static String privateKey;
+
 //      'b7f17be35ed23a376efc826d3c4db1ca5de03ce2eefad03f6949bd922326ee8a';
 
   static const String erc721_contract_address =
       "0x898f6921bbf897be9572df299c5fe77b0418e252";
   static const String rent_contract_address =
-      "0x17df3a6ce08a6ef9837ab80170887171b7d7914d";
+      "0xe60ec887223098a5514d6ae1d7eb7633338c23e9";
 
   static const String rpcUrl =
       'https://ropsten.infura.io/v3/f250163948cc4193ba4a3b60039c5660';
@@ -84,7 +84,8 @@ class ContractUtils {
   //获取所有的租客挂单（包括自己的出租挂单，因为允许撤回）
   static Future<List> getLessorList() async {
     List<dynamic> result =
-        await callContract(rentContract, 'getMyRentListIndexes', []);
+        await callContract(rentContract, 'getMyRentalTokenIdList', [ownAddress]);
+    print('getMyRentalTokenIdList');
     List<List<dynamic>> lessorList = new List();
     if (result != null && result.isNotEmpty) {
       print(result);
@@ -108,10 +109,9 @@ class ContractUtils {
   }
 
   //获取出租者的挂单（不包括自己的出租挂单）
-  static Future<List> getOtherTenantList(
-      List<List<dynamic>> lessorList) async {
+  static Future<List> getOtherTenantList(List<List<dynamic>> lessorList) async {
     List<dynamic> result =
-        await callContract(rentContract, 'getOtherTenantTokenIdList', []);
+        await callContract(rentContract, 'getOtherTenantTokenIdList', [ownAddress]);
     if (result != null && result.isNotEmpty) {
       print(result);
       List<dynamic> tokenIdList = result[0];
@@ -133,19 +133,20 @@ class ContractUtils {
     return lessorList;
   }
 
-
-
   static Future<List> getActiveContractList() async {
     List<dynamic> result =
-    await callContract(rentContract, 'getMyRentListIndexes', []);
+        await callContract(rentContract, 'getMyRentListIndexes', [ownAddress]);
     List<List<dynamic>> activeContractList = new List();
     if (result != null && result.isNotEmpty) {
-      print('$result');
+      print(result);
       List<dynamic> tokenIdList = result[0];
       if (tokenIdList != null && tokenIdList.length > 0) {
         for (int i = 0; i < tokenIdList.length; i++) {
           List<dynamic> activeContract = await callContract(
               rentContract, 'getRentList', [tokenIdList[i]]);
+          activeContractList.add(activeContract);
+          //now simulate the data to test
+          activeContractList.add(activeContract);
           activeContractList.add(activeContract);
         }
         print(activeContractList);
@@ -193,13 +194,17 @@ class ContractUtils {
     List<dynamic> params = new List();
     params.add(ownAddress);
     params.add(BigInt.parse(tokenId));
-    BigInt nftValueBI = EtherAmount.fromUnitAndValue(EtherUnit.finney,nftValue).getInWei;
+    BigInt nftValueBI =
+        EtherAmount.fromUnitAndValue(EtherUnit.finney, nftValue).getInWei;
     params.add(nftValueBI);
     params.add(leasingSchedule);
     params.add(BigInt.parse(leasingTime));
-    BigInt securityDepositBI = EtherAmount.fromUnitAndValue(EtherUnit.finney,securityDeposit).getInWei;
+    BigInt securityDepositBI =
+        EtherAmount.fromUnitAndValue(EtherUnit.finney, securityDeposit)
+            .getInWei;
     params.add(securityDepositBI);
-    BigInt rentBI = EtherAmount.fromUnitAndValue(EtherUnit.finney,rent).getInWei;
+    BigInt rentBI =
+        EtherAmount.fromUnitAndValue(EtherUnit.finney, rent).getInWei;
     params.add(rentBI);
     print(params);
     return await sendTransaction(rentContract, 'listByLessor', params);
@@ -251,8 +256,8 @@ class ContractUtils {
     await client.dispose();
   }
 
-  static String getAccountAddress(){
-    if(ownAddress != null){
+  static String getAccountAddress() {
+    if (ownAddress != null) {
       return ownAddress.toString();
     }
     return null;

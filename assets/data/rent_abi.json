@@ -326,7 +326,12 @@
   },
   {
     "constant": true,
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "lessor",
+        "type": "address"
+      }
+    ],
     "name": "getMyRentalTokenIdList",
     "outputs": [
       {
@@ -340,7 +345,12 @@
   },
   {
     "constant": true,
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "adr",
+        "type": "address"
+      }
+    ],
     "name": "getMyRentListIndexes",
     "outputs": [
       {
@@ -354,7 +364,12 @@
   },
   {
     "constant": true,
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "tenant",
+        "type": "address"
+      }
+    ],
     "name": "getMyTenantTokenIdList",
     "outputs": [
       {
@@ -368,7 +383,12 @@
   },
   {
     "constant": true,
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "lessor",
+        "type": "address"
+      }
+    ],
     "name": "getOtherRentalTokenIdList",
     "outputs": [
       {
@@ -382,7 +402,12 @@
   },
   {
     "constant": true,
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "tenant",
+        "type": "address"
+      }
+    ],
     "name": "getOtherTenantTokenIdList",
     "outputs": [
       {

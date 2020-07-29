@@ -56,22 +56,19 @@ class _LessorListState extends State<LessorList> {
               String leasingSchedule = list[3].toString();
               String leasingTime = list[4].toString();
               double nftValue =
-                  EtherAmount
-                      .fromUnitAndValue(EtherUnit.kwei, list[5])
-                      .getInEther
-                      .toDouble() /
+                  EtherAmount.fromUnitAndValue(EtherUnit.kwei, list[5])
+                          .getInEther
+                          .toDouble() /
                       1000;
               double securityDeposit =
-                  EtherAmount
-                      .fromUnitAndValue(EtherUnit.kwei, list[6])
-                      .getInEther
-                      .toDouble() /
+                  EtherAmount.fromUnitAndValue(EtherUnit.kwei, list[6])
+                          .getInEther
+                          .toDouble() /
                       1000;
               double rent =
-                  EtherAmount
-                      .fromUnitAndValue(EtherUnit.kwei, list[7])
-                      .getInEther
-                      .toDouble() /
+                  EtherAmount.fromUnitAndValue(EtherUnit.kwei, list[7])
+                          .getInEther
+                          .toDouble() /
                       1000;
               rentList = new RentList(
                   itemType: list[0],
@@ -137,7 +134,6 @@ class _LessorListState extends State<LessorList> {
       return CommonUIUtils.buildListViewEmpty();
     }
     return ListView.builder(
-        padding: EdgeInsets.all(0.0),
         itemBuilder: (context, index) {
           RentList rentList = lessorList[index];
           if (rentList.itemType == ItemType.title_my_lessor_list) {
@@ -148,11 +144,12 @@ class _LessorListState extends State<LessorList> {
             return CommonUIUtils.buildSubTitle('Others lessor list');
           }
           return Container(
+            padding: EdgeInsets.only(top: 10.0, bottom: 10.0, left: 5.0),
             child: GestureDetector(
               child: Row(
                 children: <Widget>[
                   CommonUIUtils.buildImage(index),
-                  buildColumn(rentList)
+                  buildExpanded(rentList)
                 ],
               ),
               onTap: () {
@@ -164,30 +161,28 @@ class _LessorListState extends State<LessorList> {
                     if (rentList.itemType == ItemType.others_tenant_list) {
                       return CommonUtils.commonDialog(
                           context, null, 'Are you sure to receive the order?',
-                              () {
-                            ContractUtils.receiptByLessor(rentList.tokenId)
-                                .then((result) {
-                              if (result != null) {
-                                CommonUtils.showToast(
-                                    context,
-                                    'send transaction success,please wait');
-                              }
-                            });
-                          });
+                          () {
+                        ContractUtils.receiptByLessor(rentList.tokenId)
+                            .then((result) {
+                          if (result != null) {
+                            CommonUtils.showToast(context,
+                                'send transaction success,please wait');
+                          }
+                        });
+                      });
                     }
                     //withdraw the NFT
                     return CommonUtils.commonDialog(
                         context, null, ' Are you sure to withdraw the NFT?',
-                            () {
-                          ContractUtils.withdrawlByLessor(rentList.tokenId)
-                              .then((result) {
-                            if (result != null) {
-                              CommonUtils.showToast(
-                                  context,
-                                  'send transaction success,please wait');
-                            }
-                          });
-                        });
+                        () {
+                      ContractUtils.withdrawlByLessor(rentList.tokenId)
+                          .then((result) {
+                        if (result != null) {
+                          CommonUtils.showToast(
+                              context, 'send transaction success,please wait');
+                        }
+                      });
+                    });
                   },
                 );
               },
@@ -198,16 +193,16 @@ class _LessorListState extends State<LessorList> {
         itemCount: lessorList.length);
   }
 
-  Expanded buildColumn(RentList rentList) {
+  Expanded buildExpanded(RentList rentList) {
     String tokenId = 'tokenID:${rentList.tokenId}';
     String address = rentList.itemType == ItemType.my_lessor_list
         ? 'lessor:${rentList.lessor}'
         : 'tenant:${rentList.tenant}';
-    String leasingSchedule = 'leasingSchedule:${rentList.leasingSchedule}';
+    String leasingSchedule = 'schedule:${rentList.leasingSchedule}';
     String leasingTime = 'leasingTime:${rentList.leasingTime}';
     String nftValue = 'nftValue:${rentList.nftValue.toString()}ETH';
     String securityDeposit =
-        'securityDeposit:${rentList.securityDeposit.toString()}ETH';
+        'deposit:${rentList.securityDeposit.toString()}ETH';
     String rent = 'rent:${rentList.rent.toString()}ETH';
 
     //Expanded只能在Row、Column等组件内使用

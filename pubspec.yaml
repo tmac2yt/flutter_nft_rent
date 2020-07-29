@@ -64,10 +64,11 @@ flutter:
     - assets/images/ic_nav_my_normal.png
     - assets/images/ic_nav_my_pressed.png
     - assets/images/cover_img.jpg
-    - assets/images/ic_avatar_default.png
-    - assets/images/shake.png
     - assets/images/crypto_kitty.png
     - assets/images/decentraland.png
+    - assets/images/crypto_kitty2.png
+    - assets/images/decentraland2.png
+    - assets/images/spacecraft.png
     - assets/data/erc721_abi.json
     - assets/data/rent_abi.json
   # An image asset can refer to one or more resolution-specific "variants", see

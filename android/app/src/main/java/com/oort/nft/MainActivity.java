@@ -1,4 +1,4 @@
-package com.osc.client;
+package com.oort.nft;
 
 import io.flutter.embedding.android.FlutterActivity;
 
