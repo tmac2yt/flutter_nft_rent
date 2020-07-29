@@ -26,7 +26,7 @@ Bob 看到了Alice 的挂单，决定点击接单。在Bob点击接单时，押�
 
 
 
-## 🧩 关于技术
+## 🧩 技术实现
 ### 1.区块链
 在以太坊测试链上（Ropsten）部署了两个智能合约：
 - 1.自定义的ERC721合约：StandardAssetRegistryTest.sol
